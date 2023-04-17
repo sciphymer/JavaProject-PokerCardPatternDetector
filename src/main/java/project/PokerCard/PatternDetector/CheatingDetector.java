@@ -12,7 +12,7 @@ public class CheatingDetector extends PatternDetector{
         Map<Card, Integer> cardsMap = new HashMap<>();
         for(Card card:cards){
             cardsMap.put(card, cardsMap.getOrDefault(card,0)+1);
-            if(cardsMap.get(card) == 2){
+            if(cardsMap.get(card) >= 2){
                 System.out.println("Cheating! Duplicate Cards of: " + card.toString());
                 return true;
             }

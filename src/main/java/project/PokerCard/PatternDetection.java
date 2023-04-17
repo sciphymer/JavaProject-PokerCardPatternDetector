@@ -14,31 +14,22 @@ public class PatternDetection {
                 Card.of(Card.Suit.SPADE, Card.Rank.TEN),
                 Card.of(Card.Suit.CLUB, Card.Rank.TEN)
         );
-//        PatternDetector patternDetector = getPatternDetector();
         PatternDetector patternDetector = new FullHouseDetector();
         patternDetector.detect(handCards);
     }
     public static PatternDetector getPatternDetector(){
 
         PatternDetector patternDetector = new CheatingDetector();
-        RoyalFlushDetector royalFlushDetector = new RoyalFlushDetector();
-        StraightFlushDetector straightFlushDetector = new StraightFlushDetector();
-        FlushDetector flushDetector = new FlushDetector();
-        QuadsDetector quadsDetector = new QuadsDetector();
-        FullHouseDetector fullHouseDetector = new FullHouseDetector();
-        StraightDetector straightDetector = new StraightDetector();
-        ThreeOfAKindDetector threeOfAKindDetector = new ThreeOfAKindDetector();
-        TwoPairsDetector twoPairsDetector = new TwoPairsDetector();
-        OnePairDetector onePairDetector = new OnePairDetector();
-        patternDetector.setNextDetector(royalFlushDetector);
-        royalFlushDetector.setNextDetector(straightFlushDetector);
-        straightFlushDetector.setNextDetector(flushDetector);
-        flushDetector.setNextDetector(quadsDetector);
-        quadsDetector.setNextDetector(fullHouseDetector);
-        fullHouseDetector.setNextDetector(straightDetector);
-        straightDetector.setNextDetector(threeOfAKindDetector);
-        threeOfAKindDetector.setNextDetector(twoPairsDetector);
-        twoPairsDetector.setNextDetector(onePairDetector);
+        patternDetector.setNextDetector(new RoyalFlushDetector())
+                .setNextDetector(new StraightFlushDetector())
+                .setNextDetector(new StraightFlushDetector())
+                .setNextDetector(new FlushDetector())
+                .setNextDetector(new QuadsDetector())
+                .setNextDetector(new FullHouseDetector())
+                .setNextDetector(new StraightDetector())
+                .setNextDetector(new ThreeOfAKindDetector())
+                .setNextDetector(new TwoPairsDetector())
+                .setNextDetector(new OnePairDetector());
         return patternDetector;
     }
 }
