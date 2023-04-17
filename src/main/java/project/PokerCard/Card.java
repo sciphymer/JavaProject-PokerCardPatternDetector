@@ -1,4 +1,5 @@
 package project.PokerCard;
+import java.util.Objects;
 
 /*
 
@@ -45,7 +46,10 @@ public final class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card o) {
         // TODO: implement this method to compare cards correctly
-        return 0;
+        if(suit != o.suit){
+            return Integer.compare(suit.getValue(),o.suit.getValue());
+        }
+        return Integer.compare(rank.getValue(),o.rank.getValue());
     }
 
     /*
@@ -90,5 +94,17 @@ public final class Card implements Comparable<Card> {
             return value;
         }
     }
-}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return suit == card.suit && rank == card.rank;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(suit, rank);
+    }
+}
